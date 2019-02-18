@@ -12,7 +12,7 @@ npm i --global gemcart
 #### Yarn
 
 ```sh
-yarn add --global gemcart
+yarn global add gemcart
 ```
 
 ## Usage
