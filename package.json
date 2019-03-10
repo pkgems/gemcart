@@ -1,6 +1,6 @@
 {
   "name": "gemcart",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A tiny bundler for TypeScript",
   "author": "stackdumper@gmail.com",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-sizes": "^0.4.2",
+    "rollup-plugin-typescript": "^1.0.0",
     "rollup-plugin-typescript2": "^0.19.2"
   },
   "sideEffects": false

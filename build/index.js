@@ -8,7 +8,7 @@ var chalk = _interopDefault(require('chalk'));
 var rollup = _interopDefault(require('rollup'));
 var path = require('path');
 var fs = require('fs');
-var pluginTypescript = _interopDefault(require('rollup-plugin-typescript2'));
+var pluginTypescript = _interopDefault(require('rollup-plugin-typescript'));
 var pluginCommonjs = _interopDefault(require('rollup-plugin-commonjs'));
 var pluginResolve = _interopDefault(require('rollup-plugin-node-resolve'));
 var pluginFilesize = _interopDefault(require('rollup-plugin-bundle-size'));
@@ -32,11 +32,8 @@ const build = ({ input, output, banner, withDeps, minify }) => {
             pluginResolve({
                 extensions: ['.ts', '.js', '.json'],
             }),
+            pluginTypescript(),
             pluginCommonjs(),
-            pluginTypescript({
-                cacheRoot: 'node_modules/.cache/typescript',
-                typescript: require('typescript'),
-            }),
             pluginFilesize(),
         ],
         onwarn() { },

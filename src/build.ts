@@ -2,7 +2,7 @@ import rollup from 'rollup'
 import { join } from 'path'
 import { readFileSync } from 'fs'
 
-import pluginTypescript from 'rollup-plugin-typescript2'
+import pluginTypescript from 'rollup-plugin-typescript'
 import pluginCommonjs from 'rollup-plugin-commonjs'
 import pluginResolve from 'rollup-plugin-node-resolve'
 import pluginFilesize from 'rollup-plugin-bundle-size'
@@ -29,11 +29,8 @@ export const build = ({ input, output, banner, withDeps, minify }) => {
         pluginResolve({
           extensions: ['.ts', '.js', '.json'],
         }),
+        pluginTypescript(),
         pluginCommonjs(),
-        pluginTypescript({
-          cacheRoot: 'node_modules/.cache/typescript',
-          typescript: require('typescript'),
-        }),
         pluginFilesize(),
       ],
 
