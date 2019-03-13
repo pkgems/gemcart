@@ -2,10 +2,11 @@ import rollup from 'rollup'
 import { join } from 'path'
 import { readFileSync } from 'fs'
 
-import pluginTypescript from 'rollup-plugin-typescript'
+import pluginTypescript from 'rollup-plugin-typescript2'
 import pluginCommonjs from 'rollup-plugin-commonjs'
 import pluginResolve from 'rollup-plugin-node-resolve'
 import pluginFilesize from 'rollup-plugin-bundle-size'
+import pluginJson from 'rollup-plugin-json'
 
 export const build = ({ input, output, banner, withDeps, minify }) => {
   const cwd = process.cwd()
@@ -26,12 +27,20 @@ export const build = ({ input, output, banner, withDeps, minify }) => {
       ],
 
       plugins: [
+        pluginTypescript({
+          cacheRoot: '.cache',
+          tsconfigOverride: {
+            compilerOptions: {
+              module: 'esnext',
+            },
+          },
+        }),
+        pluginCommonjs(),
         pluginResolve({
           extensions: ['.ts', '.js', '.json'],
         }),
-        pluginTypescript(),
-        pluginCommonjs(),
         pluginFilesize(),
+        pluginJson(),
       ],
 
       onwarn() {},
